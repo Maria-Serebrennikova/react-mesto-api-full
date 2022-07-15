@@ -1,0 +1,7 @@
+.popup__container_theme_dark {
+    background-color: black;
+    color: white;
+    margin: auto;
+    padding: 0;
+    text-align: center;
+}

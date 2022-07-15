@@ -1,0 +1,34 @@
+.profile__rename{
+    background: none;
+    background-image: url("../../../images/Edit-Button.svg");
+    /* background-image: url("images/Edit-Button.svg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    margin-left: 18px;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: opacity .5s;
+    }
+
+.profile__rename:hover{
+    opacity: 0.6;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .profile__rename{
+        margin-top: 0;
+        margin-left: 4px;
+      }
+    }
+@media screen and (max-width: 767px) {
+    .profile__rename{
+        width: 18px;
+        height: 18px;
+        margin-top: 0;
+        }
+        } 

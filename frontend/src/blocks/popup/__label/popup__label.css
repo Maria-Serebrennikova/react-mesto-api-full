@@ -1,0 +1,10 @@
+.popup__label{
+    max-width: 358px;
+    min-height: 72px;
+    margin: 12px auto 0;
+}
+/* @media screen and (max-width: 767px) {
+    .popup__label{
+        padding: 0 12px;
+        }
+    } */

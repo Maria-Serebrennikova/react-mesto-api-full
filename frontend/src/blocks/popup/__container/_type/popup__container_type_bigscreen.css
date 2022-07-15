@@ -1,0 +1,7 @@
+.popup__container_type_bigscreen{
+    margin: auto;
+    border: none;
+    background: none;
+    padding: 0;
+    max-width: 950px;
+}

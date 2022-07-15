@@ -1,0 +1,7 @@
+.card__bottom{
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 25px 15px 31px 21px;
+    max-width: 246px;
+}

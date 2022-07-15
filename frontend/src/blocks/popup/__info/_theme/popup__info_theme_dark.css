@@ -1,0 +1,11 @@
+.popup__info_theme_dark {
+    color: #FFFFFF;
+    background-color: #0000;
+    border-bottom: 2px solid #CCCCCC;
+    margin-bottom: 30px;
+
+}
+
+/* .popup__info_theme_dark:last-child{
+    margin-bottom: 0;
+} */
