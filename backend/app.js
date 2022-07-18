@@ -14,11 +14,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const options = {
   origin: [
     'http://localhost:3000',
-    'http://maria-silver2015.nomorepartiesxyz.ru',
-    'https://maria-silver2015.nomorepartiesxyz.ru',
-    'http://maria-silver2015-back.nomorepartiesxyz.ru',
-    'https://maria-silver2015-back.nomorepartiesxyz.ru',
-    'https://github.com/Maria-Serebrennikova',
+  //   'http://maria-silver2015.nomorepartiesxyz.ru',
+  //   'https://maria-silver2015.nomorepartiesxyz.ru',
+  //   'http://maria-silver2015-back.nomorepartiesxyz.ru',
+  //   'https://maria-silver2015-back.nomorepartiesxyz.ru',
+  //   'https://github.com/Maria-Serebrennikova',
   ],
   credentials: true,
 };
