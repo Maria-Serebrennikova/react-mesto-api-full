@@ -16,7 +16,7 @@ class ApiAuth {
   registration(password, email) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
-      headers: this._headers,
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         password: password,
         email: email,
@@ -27,8 +27,7 @@ class ApiAuth {
   login(password, email) {
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
-      credentials: 'include',
-      headers: this._headers,
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         password: password,
         email: email,
@@ -39,9 +38,8 @@ class ApiAuth {
   getUserData(jwt) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     }).then((res) => this.checkResponse(res));
@@ -49,7 +47,9 @@ class ApiAuth {
 }
 
 export const apiAuth = new ApiAuth({
-  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3001'}`,
+  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL ||
+   '//localhost:3001'}`,
+  //baseUrl: '//localhost:3001',
   headers: {
     "Content-Type": "application/json",
   },

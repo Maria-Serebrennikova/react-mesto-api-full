@@ -1,4 +1,4 @@
-import React from "react"; // При удалении этого импорта выводится: "'React' должен быть в области видимости при использовании JSX"
+import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -37,16 +37,16 @@ function App() {
   useEffect(() => {
     api
       .getProfile()
-      .then((res) => {
-        setCurrentUser(res);
+      .then(({data}) => {
+        setCurrentUser(data);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
     api
       .getInitialCards()
-      .then((res) => {
-        setCards(res);
+      .then(({data}) => {
+        setCards(data);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
     checkToken();
   }, []);
 
@@ -246,10 +246,7 @@ function App() {
               />
             </ProtectedRoute>
 
-            {/* <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
-            </Route> */}
-          </Switch>
+            </Switch>
 
           <Footer />
         </div>

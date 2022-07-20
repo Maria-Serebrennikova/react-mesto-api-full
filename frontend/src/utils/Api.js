@@ -12,25 +12,26 @@ class Api {
     }
   }
 
+  _headersWithJwt() {
+    return {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this.headers}
+  }
+
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   editProfile(info) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
       body: JSON.stringify({
         name: info.name,
         about: info.about,
@@ -41,8 +42,7 @@ class Api {
   addCard(obj) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
       body: JSON.stringify({
         name: obj.name,
         link: obj.link,
@@ -53,23 +53,21 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id} `, {
       method: "DELETE",
-      credentials: 'include',
-      headers: this._headers,
-    }).then(this._checkResponse);
+      headers: this._headersWithJwt(),
+      }).then(this._checkResponse);
   }
 
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
@@ -85,8 +83,7 @@ class Api {
   changeAvatar(formValues) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      credentials: 'include',
-      headers: this._headers,
+      headers: this._headersWithJwt(),
       body: JSON.stringify({
         avatar: formValues.avatar,
       }),
@@ -95,9 +92,12 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3001'}`,
+  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL ||
+     '//localhost:3001'}`,
+  //baseUrl: '//localhost:3001',
+  //baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL}`,
   headers: {
-    //authorization: "efe40732-ef80-40e9-af55-47e05b496b02",
     "Content-Type": "application/json",
+    'Accept': 'application/json',
   },
 });
