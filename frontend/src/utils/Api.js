@@ -1,7 +1,7 @@
 class Api {
   constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
+    this.baseUrl = baseUrl;
+    this.headers = headers;
   }
 
   _checkResponse(res) {
@@ -17,19 +17,19 @@ class Api {
   }
 
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   editProfile(info) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headersWithJwt(),
       body: JSON.stringify({
@@ -40,7 +40,7 @@ class Api {
   }
 
   addCard(obj) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: this._headersWithJwt(),
       body: JSON.stringify({
@@ -51,21 +51,21 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id} `, {
+    return fetch(`${this.baseUrl}/cards/${id} `, {
       method: "DELETE",
       headers: this._headersWithJwt(),
       }).then(this._checkResponse);
   }
 
   deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headersWithJwt(),
     }).then(this._checkResponse);
   }
 
   addLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headersWithJwt(),
     }).then(this._checkResponse);
@@ -81,7 +81,7 @@ class Api {
 
 
   changeAvatar(formValues) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headersWithJwt(),
       body: JSON.stringify({

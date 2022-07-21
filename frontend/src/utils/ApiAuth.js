@@ -1,7 +1,7 @@
 class ApiAuth {
   constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
+    this.baseUrl = baseUrl;
+    this.headers = headers;
   }
 
   checkResponse(res) {
@@ -14,7 +14,7 @@ class ApiAuth {
   }
 
   registration(password, email) {
-    return fetch(`${this._baseUrl}/signup`, {
+    return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -25,7 +25,7 @@ class ApiAuth {
   }
 
   login(password, email) {
-    return fetch(`${this._baseUrl}/signin`, {
+    return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -36,10 +36,10 @@ class ApiAuth {
   }
 
   getUserData(jwt) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
     }).then((res) => this.checkResponse(res));
@@ -47,10 +47,6 @@ class ApiAuth {
 }
 
 export const apiAuth = new ApiAuth({
-  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL ||
-   '//localhost:3001'}`,
+  baseUrl: `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3001'}`,
   //baseUrl: '//localhost:3001',
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+ });
