@@ -172,15 +172,15 @@ function App() {
   function handleUpdateAvatar(formValues) {
     api
       .changeAvatar(formValues)
-      .then((res) => {
-        setCurrentUser(res);
+      .then(({data}) => {
+        setCurrentUser(data);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser.data._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {

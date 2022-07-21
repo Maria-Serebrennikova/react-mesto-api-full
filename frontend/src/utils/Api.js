@@ -57,13 +57,6 @@ class Api {
       }).then(this._checkResponse);
   }
 
-  deleteLike(id) {
-    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this._headersWithJwt(),
-    }).then(this._checkResponse);
-  }
-
   addLike(id) {
     return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "PUT",
@@ -71,7 +64,14 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  changeLikeCardStatus(id, isLiked) {
+  deleteLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headersWithJwt(),
+    }).then(this._checkResponse);
+  }
+
+    changeLikeCardStatus(id, isLiked) {
     if (isLiked) {
       return this.deleteLike(id);
     } else {
