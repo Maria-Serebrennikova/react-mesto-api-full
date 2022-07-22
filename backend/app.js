@@ -14,11 +14,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const options = {
   origin: [
     'http://localhost:3000',
-  //   'http://maria-silver2015.nomorepartiesxyz.ru',
-  //   'https://maria-silver2015.nomorepartiesxyz.ru',
-  //   'http://maria-silver2015-back.nomorepartiesxyz.ru',
-  //   'https://maria-silver2015-back.nomorepartiesxyz.ru',
-  //   'https://github.com/Maria-Serebrennikova',
+    'http://maria-silver2015.nomorepartiesxyz.ru',
+    'https://maria-silver2015.nomorepartiesxyz.ru',
+    'http://maria-silver2015-back.nomorepartiesxyz.ru',
+    'https://maria-silver2015-back.nomorepartiesxyz.ru',
+    'https://github.com/Maria-Serebrennikova',
   ],
   credentials: true,
 };
@@ -39,6 +39,12 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
