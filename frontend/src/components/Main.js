@@ -19,19 +19,19 @@ function Main({
         <div className="profile__avatar" onClick={onEditAvatar}>
           <img
             className="profile__avatar-img"
-            src={currentUser.data.avatar}
+            src={currentUser.avatar}
             alt="Аватар"
           />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{currentUser.data.name}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__rename"
             onClick={onEditProfile}
             aria-label="change"
             type="button"
           ></button>
-          <p className="profile__status">{currentUser.data.about}</p>
+          <p className="profile__status">{currentUser.about}</p>
         </div>
         <button
           className="profile__button"

@@ -5,8 +5,7 @@ const NotFound = require('../errors/NotFound');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    // .then(() => res.status(200).send({ data: 'dfgdfgdfgdfg' }))
-    .then((cards) => res.status(200).send({ data: cards }))
+    .then((cards) => res.status(200).send(cards))
     .catch((next));
 };
 
@@ -19,7 +18,7 @@ module.exports.createCard = (req, res, next) => {
     link,
     owner,
   })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequest('Введенные данные некорректны'));
@@ -39,7 +38,7 @@ module.exports.deleteCard = (req, res, next) => {
         throw new Forbidden('Недостаточно прав для удаления карточки');
       }
       Card.findByIdAndRemove(req.params.cardId)
-        .then(() => res.status(200).send({ data: card }))
+        .then(() => res.status(200).send(card))
         .catch(next);
     })
     .catch(next);

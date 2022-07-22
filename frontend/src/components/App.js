@@ -37,14 +37,14 @@ function App() {
   useEffect(() => {
     api
       .getProfile()
-      .then(({data}) => {
-        setCurrentUser(data);
+      .then((res) => {
+        setCurrentUser(res);
       })
       .catch(err => console.log(err));
     api
       .getInitialCards()
-      .then(({data}) => {
-        setCards(data);
+      .then((res) => {
+        setCards(res);
       })
       .catch(err => console.log(err));
     checkToken();
@@ -101,7 +101,7 @@ function App() {
             if (data) {
               setLoggedIn(true);
               history.push("/");
-              setUserEmail(data.data.email);
+              setUserEmail(data.email);
               setCurrentUser(data);
             }
           })
@@ -172,15 +172,15 @@ function App() {
   function handleUpdateAvatar(formValues) {
     api
       .changeAvatar(formValues)
-      .then(({data}) => {
-        setCurrentUser(data);
+      .then((res) => {
+        setCurrentUser(res);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser.data._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
