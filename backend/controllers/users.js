@@ -120,8 +120,8 @@ module.exports.login = (req, res, next) => {
     .catch((err) => {
       if (err.code === 401) {
         next(new Unauthorized('Неверно введен пароль или почта'));
-      } else {
-        next(err);
+        return;
       }
+      next(err);
     });
 };
