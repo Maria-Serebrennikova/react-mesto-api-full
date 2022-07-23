@@ -112,16 +112,13 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
+      if (!user) {
+        throw new Unauthorized('Неверно введен пароль или почта');
+      }
       const token = jwt.sign({
         _id: user._id,
       }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
       res.send({ token });
     })
-    .catch((err) => {
-      if (err.code === 401) {
-        next(new Unauthorized('Неверно введен пароль или почта'));
-        return;
-      }
-      next(err);
-    });
+    .catch(next);
 };
