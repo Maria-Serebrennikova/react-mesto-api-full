@@ -117,7 +117,11 @@ module.exports.login = (req, res, next) => {
       }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
       res.send({ token });
     })
-    .catch(() => {
-      next(new Unauthorized('Неверно введен пароль или почта'));
+    .catch((err) => {
+      if (err.code === 401) {
+        next(new Unauthorized('Неверно введен пароль или почта'));
+      } else {
+        next(err);
+      }
     });
 };
